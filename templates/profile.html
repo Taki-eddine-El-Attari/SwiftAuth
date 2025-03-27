@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Flask Auth App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">User Profile</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3">
+                        <h4>{{ user.username }}</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table">
+                            <tr>
+                                <th>Email:</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Member Since:</th>
+                                <td>{{ user.created_at.strftime('%B %d, %Y') }}</td>
+                            </tr>
+                            {% if user.last_login %}
+                            <tr>
+                                <th>Last Login:</th>
+                                <td>{{ user.last_login.strftime('%B %d, %Y at %H:%M') }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
