@@ -64,6 +64,28 @@ document.addEventListener("DOMContentLoaded", function () {
       strengthText.textContent = "Password strength: " + message;
     });
   }
+
+  // Toggle switch label between Enable/Disable
+  const initSwitchLabel = function (switchId) {
+    const switchElement = document.getElementById(switchId);
+    if (switchElement) {
+      const switchLabel = document.querySelector(`label[for="${switchId}"]`);
+
+      // Set initial label text
+      if (switchLabel) {
+        switchLabel.textContent = switchElement.checked ? "Enable" : "Disable";
+
+        // Add change event listener
+        switchElement.addEventListener("change", function () {
+          switchLabel.textContent = this.checked ? "Enable" : "Disable";
+        });
+      }
+    }
+  };
+
+  // Initialize all switches on the page
+  initSwitchLabel("twoFactorSwitch");
+  initSwitchLabel("emailNotifSwitch");
 });
 
 // Toggle password visibility

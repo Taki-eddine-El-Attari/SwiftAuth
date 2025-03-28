@@ -388,6 +388,13 @@ label {
   border-color: var(--success-color);
 }
 
+/* Fixed width for switch labels */
+.setting-action .custom-control-label {
+  min-width: 60px;
+  display: inline-block;
+  text-align: right;
+}
+
 /* Alerts */
 .alert {
   border-radius: 10px;
