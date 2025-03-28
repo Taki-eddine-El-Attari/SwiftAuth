@@ -1,17 +1,464 @@
+/* Global Styles */
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --body-bg: #f0f2f5;
+  --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.3s;
+}
+
 body {
-    padding-bottom: 30px;
-    background-color: #f8f9fa;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--body-bg);
+  color: #495057;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+/* Navbar Styling */
 .navbar {
-    margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0;
+  padding: 15px 0;
 }
 
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--primary-color) !important;
+}
+
+.navbar-brand i {
+  margin-right: 6px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #444;
+  font-weight: 500;
+  padding: 8px 16px;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+}
+
+.nav-btn {
+  margin-left: 10px;
+  padding: 8px 16px !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Card Styling */
 .card {
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
 .card-header {
-    border-radius: 8px 8px 0 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-footer {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 15px 20px;
+}
+
+/* Form Styling */
+.form-control {
+  height: calc(2.5em + 0.75rem + 2px);
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Auth Components */
+.auth-container {
+  margin-bottom: 50px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.auth-logo {
+  background-color: var(--primary-color);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.auth-logo i {
+  font-size: 28px;
+  color: white;
+}
+
+.auth-header h2 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.auth-card {
+  margin-bottom: 30px;
+}
+
+.auth-form .btn {
+  height: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-link:hover {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+/* Password Field */
+.password-input-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Password Strength Meter */
+.password-strength-meter {
+  height: 4px;
+  background-color: #e9ecef;
+  margin: 10px 0 15px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.strength-meter-bar {
+  height: 100%;
+  width: 0;
+  background-color: #dc3545;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+  display: block;
+  font-size: 12px;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+/* Profile Page */
+.profile-card {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile-header {
+  padding: 30px 20px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.profile-title {
+  opacity: 0.8;
+  margin-bottom: 0;
+}
+
+.profile-stats {
+  padding: 0;
+}
+
+.stat-item {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 123, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.stat-icon i {
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.stat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #6c757d;
+  margin-bottom: 3px;
+}
+
+.stat-value {
+  font-weight: 600;
+}
+
+/* Activity Timeline */
+.activity-timeline {
+  position: relative;
+  padding: 20px;
+}
+
+.timeline-item {
+  padding: 0 0 20px 40px;
+  position: relative;
+  border-left: 2px solid #eaeaea;
+  margin-left: 20px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-icon {
+  position: absolute;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.timeline-content {
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-content h5 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* Settings Card */
+.settings-card .card-body {
+  padding: 0;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info h5 {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.setting-info p {
+  margin: 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+/* Custom Switches */
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+/* Alerts */
+.alert {
+  border-radius: 10px;
+  border: none;
+  padding: 15px 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.alert-success {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #721c24;
+}
+
+.alert-warning {
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #856404;
+}
+
+.alert-info {
+  background-color: rgba(23, 162, 184, 0.15);
+  color: #0c5460;
+}
+
+/* Footer */
+footer {
+  background-color: white;
+  padding: 25px 0;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+footer p {
+  margin-bottom: 0;
+  color: #6c757d;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: #f8f9fa;
+  color: #495057;
+  border-radius: 50%;
+  margin-left: 10px;
+  transition: all var(--transition-speed) ease;
+}
+
+.social-icon:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .profile-card,
+  .activity-card,
+  .settings-card {
+    margin-bottom: 20px;
+  }
+
+  .col-md-4,
+  .col-md-8 {
+    padding: 0 10px;
+  }
 }
