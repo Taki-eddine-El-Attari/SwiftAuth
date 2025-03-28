@@ -1,41 +1,147 @@
-{% extends "base.html" %}
-
-{% block title %}Profile - Flask Auth App{% endblock %}
-
-{% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header bg-info text-white">
-                <h4 class="mb-0">User Profile</h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4 text-center">
-                        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-thumbnail rounded-circle mb-3">
-                        <h4>{{ user.username }}</h4>
-                    </div>
-                    <div class="col-md-8">
-                        <table class="table">
-                            <tr>
-                                <th>Email:</th>
-                                <td>{{ user.email }}</td>
-                            </tr>
-                            <tr>
-                                <th>Member Since:</th>
-                                <td>{{ user.created_at.strftime('%B %d, %Y') }}</td>
-                            </tr>
-                            {% if user.last_login %}
-                            <tr>
-                                <th>Last Login:</th>
-                                <td>{{ user.last_login.strftime('%B %d, %Y at %H:%M') }}</td>
-                            </tr>
-                            {% endif %}
-                        </table>
-                    </div>
-                </div>
-            </div>
+{% extends "base.html" %} {% block title %}Profile - SecureFlask{% endblock %} {%
+block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img
+            src="https://ui-avatars.com/api/?name={{ user.username }}&background=0D8ABC&color=fff&size=250"
+            alt="Profile Picture"
+            class="img-fluid"
+          />
         </div>
+        <h3 class="profile-name">{{ user.username }}</h3>
+        <p class="profile-title">Member</p>
+      </div>
+      <div class="card-body profile-stats">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Joined</span>
+            <span class="stat-value"
+              >{{ user.created_at.strftime('%b %d, %Y') }}</span
+            >
+          </div>
+        </div>
+        {% if user.last_login %}
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Last Login</span>
+            <span class="stat-value"
+              >{{ user.last_login.strftime('%b %d, %Y at %H:%M') }}</span
+            >
+          </div>
+        </div>
+        {% endif %}
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Email</span>
+            <span class="stat-value">{{ user.email }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-outline-primary btn-sm mr-2">
+          <i class="fas fa-edit"></i> Edit Profile
+        </button>
+        <button class="btn btn-outline-danger btn-sm">
+          <i class="fas fa-key"></i> Change Password
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card activity-card">
+      <div class="card-header">
+        <h4 class="mb-0"><i class="fas fa-chart-line"></i> Account Activity</h4>
+      </div>
+      <div class="card-body p-0">
+        <div class="activity-timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon bg-success">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="timeline-content">
+              <h5>Account Created</h5>
+              <p class="text-muted">
+                {{ user.created_at.strftime('%B %d, %Y at %H:%M') }}
+              </p>
+              <p>
+                Welcome to the platform! Your account was successfully created.
+              </p>
+            </div>
+          </div>
+          {% if user.last_login %}
+          <div class="timeline-item">
+            <div class="timeline-icon bg-info">
+              <i class="fas fa-sign-in-alt"></i>
+            </div>
+            <div class="timeline-content">
+              <h5>Last Login</h5>
+              <p class="text-muted">
+                {{ user.last_login.strftime('%B %d, %Y at %H:%M') }}
+              </p>
+              <p>You logged in successfully.</p>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-4 settings-card">
+      <div class="card-header">
+        <h4 class="mb-0"><i class="fas fa-cog"></i> Account Settings</h4>
+      </div>
+      <div class="card-body">
+        <div class="setting-item">
+          <div class="setting-info">
+            <h5>Two-Factor Authentication</h5>
+            <p>Add an extra layer of security to your account</p>
+          </div>
+          <div class="setting-action">
+            <div class="custom-control custom-switch">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="twoFactorSwitch"
+              />
+              <label class="custom-control-label" for="twoFactorSwitch"
+                >Enable</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <h5>Email Notifications</h5>
+            <p>Receive email alerts for account activities</p>
+          </div>
+          <div class="setting-action">
+            <div class="custom-control custom-switch">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="emailNotifSwitch"
+                checked
+              />
+              <label class="custom-control-label" for="emailNotifSwitch"
+                >Enable</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

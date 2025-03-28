@@ -1,59 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A modern Flask authentication application"
+    />
     <title>{% block title %}Flask Auth App{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">Flask Auth App</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    {% if session.get('user_id') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.profile') }}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <i class="fas fa-shield-alt"></i> SecureFlask
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            {% if session.get('user_id') %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.profile') }}">
+                <i class="fas fa-user-circle"></i> Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}">
+                <i class="fas fa-sign-in-alt"></i> Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link btn btn-primary btn-sm nav-btn"
+                href="{{ url_for('auth.register') }}"
+              >
+                <i class="fas fa-user-plus"></i> Register
+              </a>
+            </li>
+            {% endif %}
+          </ul>
         </div>
+      </div>
     </nav>
 
-    <div class="container mt-4">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-
-        {% block content %}{% endblock %}
+    <div class="container mt-5">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div
+        class="alert alert-{{ category }} alert-dismissible fade show animated fadeIn"
+      >
+        <i
+          class="fas fa-{% if category == 'success' %}check-circle{% elif category == 'danger' %}exclamation-circle{% elif category == 'warning' %}exclamation-triangle{% else %}info-circle{% endif %} mr-2"
+        ></i>
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          &times;
+        </button>
+      </div>
+      {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> 
+    <footer class="mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; 2025 SecureFlask. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/Taki-eddine-El-Attari/SecureFlask" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+  </body>
 </html>
