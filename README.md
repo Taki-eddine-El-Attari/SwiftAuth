@@ -14,9 +14,15 @@ Voici quelques aperçus de l'application :
 
 <img src="https://github.com/user-attachments/assets/08d156e5-277f-49b5-828d-11de615d9f39" width="900">
 
+*Page de connexion*
+
 <img src="https://github.com/user-attachments/assets/526dd470-da71-4549-8799-4cf3509fa21a" width="900">
 
+*Page d'inscription*
+
 <img src="https://github.com/user-attachments/assets/e48fe971-9ec9-41c4-aac9-379487b60ed4" width="900">
+
+*Page d'accueil affichant les informations de l'utilisateur connecté*
 
 ## Prérequis 🛠️
 
